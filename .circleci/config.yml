@@ -30,7 +30,7 @@ workflows:
   trigger-workflow:
     triggers:
       - schedule:
-          cron: "* 7 * * *" #universal time (UTC)
+          cron: "* * * * *" #universal time (UTC)
           filters:
             branches:
               only:
