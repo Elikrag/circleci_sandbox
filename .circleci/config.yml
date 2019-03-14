@@ -29,11 +29,11 @@ workflows:
   nightly:
     triggers:
       - schedule:
-        cron: "25 12 * * *"
-        filters:
-          branches:
-            only:
-              - master
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
     jobs:
       - trigger-test
 
