@@ -21,12 +21,13 @@ jobs:
       - run:
           name: Summarize Document
           command: python3 doc_summary.py
+
 workflows:
   version: 2
-  commit:
+  commit-workflow:
     jobs:
       - commit-test
-  nightly:
+  trigger-workflow:
     triggers:
       - schedule:
           cron: "* 12 * * *"
