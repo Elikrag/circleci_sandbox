@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  commit-test:
+    working_directory: ~/circleci_test
+    docker:
+      - image: circleci/python:3.6.4
+    steps:
+      - checkout
+      - run:
+          name: Commit Test
+          command: echo "Successful Commit"
+  trigger-test:
+    working_directory: ~/circleci_test
+    docker:
+      - image: circleci/python:3.6.4
+    steps:
+      - checkout
+      - run:
+          name: Python Environment
+          command: sudo pip3 install -r requirements.txt
+      - run:
+          name: Summarize Document
+          command: python3 doc_summary.py
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - commit-test
+  nightly:
+    triggers:
+      - schedule:
+        cron: 25 12 * * *
+        filters:
+          branches:
+            only:
+              - master
+    jobs:
+      - trigger-test
+
