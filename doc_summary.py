@@ -15,8 +15,8 @@ conn = psycopg2.connect(
   password="noprod",
   database="metrics"
 )
-cur = conn.cursor()
 
+cur = conn.cursor()
 cur.executemany("""INSERT INTO class_metrics (label,label_count) VALUES (%(label)s, %(label_count)s)""", classdict)
 cur.execute("""SELECT * FROM class_metrics""")
 
