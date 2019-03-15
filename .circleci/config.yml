@@ -22,19 +22,20 @@ jobs:
           name: Summarize Document
           command: python3 doc_summary.py
 
+          
 workflows:
   version: 2
   commit-workflow:
     jobs:
       - commit-test
-  trigger-workflow:
-    triggers:
-      - schedule:
-          cron: "0 7 * * *" #universal time (UTC)
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - trigger-test
+  #trigger-workflow:
+  #  triggers:
+  #    - schedule:
+  #        cron: "0 7 * * *" #universal time (UTC)
+  #        filters:
+  #          branches:
+  #            only:
+  #              - master
+  #  jobs:
+  #    - trigger-test
 
